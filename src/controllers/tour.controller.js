@@ -1,6 +1,5 @@
 import {tour} from '../models/tour.model.js';
 
-// Get all tours
 export const getTours = async (req, res) => {
   try {
     const tours = await tour.find();
@@ -10,7 +9,6 @@ export const getTours = async (req, res) => {
   }
 };
 
-// Add a new tour
 export const addTour = async (req, res) => {
   try {
     const newTour = new tour(req.body);

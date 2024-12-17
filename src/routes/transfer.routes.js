@@ -3,7 +3,7 @@ import { getTransfers, addTransfer } from '../controllers/transfer.controller.js
 
 const router = express.Router();
 
-router.get('/gettransfers', getTransfers); // Fetch all transfers
-router.post('/addtransfers', addTransfer); // Add a new transfer
+router.get('/gettransfers', getTransfers); 
+router.post('/addtransfers', addTransfer); 
 
 export default router;

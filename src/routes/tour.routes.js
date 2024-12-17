@@ -3,7 +3,7 @@ import { getTours, addTour } from '../controllers/tour.controller.js';
 
 const router = express.Router();
 
-router.get('/gettours', getTours); // Fetch all tours
-router.post('/addtours', addTour); // Add a new tour
+router.get('/gettours', getTours); 
+router.post('/addtours', addTour); 
 
 export default router;

@@ -8,23 +8,18 @@ export const searchTours = async (req, res) => {
   try {
     const { budget } = req;
 
-    // Ensure the budget parameter is provided
     if (!budget) {
       return res.status(400).json({ message: "Budget is required." });
     }
 
-    // Convert budget to a number
     const budgetAmount = parseFloat(budget);
 
-    // Check if budget is a valid number
     if (isNaN(budgetAmount)) {
       return res.status(400).json({ message: "Invalid budget value." });
     }
 
-    // Step 1: Fetch all tours from the database
     const allTours = await tour.find();
 
-    // Step 2: Filter tours based on the budget
     const affordableTours = allTours.filter(
       (tour) => tour.price <= budgetAmount
     );
@@ -36,7 +31,6 @@ export const searchTours = async (req, res) => {
       });
     }
 
-    // Return the filtered tours
     return res.status(200).json({ tours: affordableTours });
   } catch (error) {
     console.error(error);
@@ -385,98 +379,4 @@ export const searchHotel = async (req, res) => {
         .json({ message: "An error occurred during the global search." });
     }
   };
-  
-//   export const globalSearch = async (req, res) => {
-//     try {
-//       const { intentType } = req.body;
-//       console.log(intentType);
-  
-//       if (!intentType || !Array.isArray(intentType) || intentType.length === 0) {
-//         return res.status(400).json({
-//           message:
-//             "intentType body parameter is required and should be a non-empty array.",
-//         });
-//       }
-  
-//       const results = {};
-  
-//       const handleHotelSearch = async (location, budget) => {
-//         return await new Promise((resolve, reject) => {
-//           searchHotel(
-//             { location, budget },
-//             {
-//               status: (statusCode) => ({
-//                 json: (data) =>
-//                   resolve(
-//                     data.hotels || data
-//                   ),
-//               }),
-//             }
-//           );
-//         });
-//       };
-  
-//       const handleFlightSearch = async (schedules, stepover, budget) => {
-//         console.log('Flight search params:', { schedules, stepover, budget });
-//         return await new Promise((resolve, reject) => {
-//           searchFlights(
-//             { schedules, stepover, budget },
-//             {
-//               status: (statusCode) => ({
-//                 json: (data) =>
-//                   resolve(
-//                     data.flights || data
-//                   ),
-//               }),
-//             }
-//           );
-//         });
-//       };
-      
-  
-//       for (const intent of intentType) {
-//         switch (intent) {
-//           case "Hotel_search":
-//             if (
-//               !req.body.Hotel_search ||
-//               !req.body.Hotel_search.location ||
-//               !req.body.Hotel_search.budget
-//             ) {
-//               return res.status(400).json({
-//                 message: "Missing required parameters for Hotel_search.",
-//               });
-//             }
-//             const { location, budget: hotelBudget } = req.body.Hotel_search;
-//             results.hotels = await handleHotelSearch(location, hotelBudget);
-//             break;
-//             case "Flight_search":
-//                 if (
-//                   !req.body.Flight_search ||
-//                   !req.body.Flight_search.schedules ||
-//                   !req.body.Flight_search.stepover ||
-//                   !req.body.Flight_search.budget
-//                 ) {
-//                   return res.status(400).json({
-//                     message: "Missing required parameters for Flight_search.",
-//                   });
-//                 }
-//                 const { schedules, stepover, budget: flightBudget } = req.body.Flight_search;
-//                 results.flights = await handleFlightSearch(schedules, stepover, flightBudget);
-//                 break;
-              
-//           default:
-//             return res
-//               .status(400)
-//               .json({ message: `Unknown intent type: ${intent}.` });
-//         }
-//       }
-  
-//       return res.status(200).json(results);
-//     } catch (error) {
-//       console.error("Error in global search:", error);
-//       return res
-//         .status(500)
-//         .json({ message: "An error occurred during the global search." });
-//     }
-//   };
   

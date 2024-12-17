@@ -1,6 +1,5 @@
 import {transfer} from '../models/transfer.model.js';
 
-// Get all transfers
 export const getTransfers = async (req, res) => {
   try {
     const transfers = await transfer.find();
@@ -10,7 +9,6 @@ export const getTransfers = async (req, res) => {
   }
 };
 
-// Add a new transfer
 export const addTransfer = async (req, res) => {
   try {
     const newTransfer = new transfer(req.body);

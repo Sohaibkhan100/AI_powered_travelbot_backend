@@ -1,6 +1,5 @@
 import {flight} from '../models/flight.model.js';
 
-// Get all flights
 export const getFlights = async (req, res) => {
   try {
     const flights = await flight.find();
@@ -10,7 +9,6 @@ export const getFlights = async (req, res) => {
   }
 };
 
-// Add a new flight
 export const addFlight = async (req, res) => {
   try {
     const newFlight = new flight(req.body);

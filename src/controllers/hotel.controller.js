@@ -1,6 +1,5 @@
 import {hotel} from '../models/hotel.model.js';
 
-// Get all hotels
 export const getHotels = async (req, res) => {
   try {
     const hotels = await hotel.find();
@@ -10,7 +9,6 @@ export const getHotels = async (req, res) => {
   }
 };
 
-// Add a new hotel
 export const addHotel = async (req, res) => {
   try {
     const newHotel = new hotel(req.body);

@@ -10,7 +10,7 @@ import { otpVerificationEmail } from '../template/otpTemplates.js';
 
 
 function generateToken() {
-  return crypto.randomBytes(3).toString("hex"); // Example token generation
+  return crypto.randomBytes(3).toString("hex"); 
 }
 const sendEmail = async (receiverEmail, emailTemplate) => {
   const mailOptions = {
@@ -211,8 +211,8 @@ export const otpVerification = async (req, res) => {
       });
     }
 
-    let latestOtpCode = otpCodeLog[otpCodeLog.length - 1].code; // Get the latest OTP code
-    let otpCreatedAt = new Date(otpCodeLog[otpCodeLog.length - 1].createdAt); // Get the creation time of the latest OTP
+    let latestOtpCode = otpCodeLog[otpCodeLog.length - 1].code; 
+    let otpCreatedAt = new Date(otpCodeLog[otpCodeLog.length - 1].createdAt); 
     let currentDateTime = new Date();
 
     console.log("Database OTP:", latestOtpCode);
